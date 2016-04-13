@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#58606D</color>
+    <color name="colorPrimaryDark">#2F333A</color>
+    <color name="colorAccent">#ffffff</color>
+
+
+    <color name="sendGreen">#06D6A0</color>
+    <color name="remindersYellow">#FFBB5A</color>
+    <color name="packagesBlue">#3280C8</color>
+    <color name="modesRed">#EF476F</color>
+</resources>
