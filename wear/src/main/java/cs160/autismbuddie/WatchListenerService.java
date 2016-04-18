@@ -12,17 +12,18 @@ import java.nio.charset.StandardCharsets;
  * Created by robinhu on 4/16/16.
  */
 public class WatchListenerService extends WearableListenerService {
+    private String TAG = "ABuddie";
 
     //Most Simple Version: Listen for messages and launch activity based off path (eg Faces, Reminder, etc)
     //When receiving a mode change message, make update to storate
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
-        Log.d("T", "in WatchListenerService, Path: " + messageEvent.getPath());
-        Log.d("T", "in WatchListenerService, Data: " + messageEvent.getData());
+        Log.d(TAG, "in WatchListenerService, Path: " + messageEvent.getPath());
+        Log.d(TAG, "in WatchListenerService, Data: " + messageEvent.getData());
 
         String path = messageEvent.getPath();
         String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-        Log.d("T", value);
+        Log.d(TAG, value);
 
         if (path.equals("/faces")) {
             Intent intent = new Intent(this, FacesActivity.class);
