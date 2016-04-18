@@ -1,6 +1,12 @@
 package cs160.autismbuddie;
 
+import android.content.Intent;
+import android.util.Log;
+
+import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by robinhu on 4/16/16.
@@ -9,6 +15,33 @@ public class WatchListenerService extends WearableListenerService {
 
     //Most Simple Version: Listen for messages and launch activity based off path (eg Faces, Reminder, etc)
     //When receiving a mode change message, make update to storate
+    @Override
+    public void onMessageReceived(MessageEvent messageEvent) {
+        Log.d("T", "in WatchListenerService, Path: " + messageEvent.getPath());
+        Log.d("T", "in WatchListenerService, Data: " + messageEvent.getData());
+
+        String path = messageEvent.getPath();
+        String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+        Log.d("T", value);
+
+        if (path.equals("/faces")) {
+            Intent intent = new Intent(this, FacesActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(getPackageName() + ".picker", 0);
+            startActivity(intent);
+        } else if (path.equals("/trivia")) {
+            Intent intent = new Intent(this, TriviaActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(getPackageName() + ".picker", 0);
+            startActivity(intent);
+        } else if (path.equals("/reminder")) {
+            Intent intent = new Intent(this, ReminderActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
+
+    }
 
     //Harder: Listen for data items that have proper themes/images as assets, then launch activity using those
 }

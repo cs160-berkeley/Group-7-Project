@@ -11,15 +11,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.DeviceDefault">
+        android:theme="@style/AppTheme">
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.DeviceDefault.Light">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,30 +28,21 @@
         <activity
             android:name=".FacesActivity"
             android:label="@string/title_activity_faces">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".TriviaActivity"
             android:label="@string/title_activity_trivia">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ReminderActivity"
             android:label="@string/title_activity_reminder">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <service android:name=".WatchListenerService"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
