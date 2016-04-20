@@ -1,5 +1,4 @@
 # Group-7-Project
-Group 7 Project
 
 Autism Buddie is an app designed to assist autistic children with their parents or teaching aids. A-Buddie takes advantage of the novelty of a smart watch, creating an customizable and fun user experience for the child. The adult then uses a phone app to set reminders for the child, help engage them in social-practise games, or send trivia on their favorite topics. All of these functionalities are themed to the child's interest (e.g Pokémon, Minecraft, etc.) so the child remains interested in and enjoys this interaction.
 
