@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         setContentView(R.layout.activity_main);
         ptwUtil = new PhoneToWatchUtil(getApplicationContext());
 
+
         int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         if( ConnectionResult.SUCCESS != result ){
             Log.d(Utils.TAG, "Showing update dialog");

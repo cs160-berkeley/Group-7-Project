@@ -12,6 +12,14 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +44,12 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                     .addOnConnectionFailedListener(this)
                     .build();
         }
+        Parse.initialize(new Parse.Configuration.Builder(context)
+                .applicationId("myAppId")
+                .clientKey("myClientKey")
+                .server("https://abuddie.herokuapp.com/parse/")
+                .enableLocalDataStore()
+                .build());
     }
 
     @Override
@@ -86,5 +100,104 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
             mApiClient.disconnect();
             mApiClient.connect();
         }
+    }
+
+    public JSONObject getTriviaGame(String id)
+    {
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("TriviaGame");
+        List<ParseObject> triviaGames;
+        try {
+            triviaGames = q.find();
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        for(ParseObject parseObject: triviaGames)
+        {   // TODO: Pick the right game based off of id
+            id = parseObject.getObjectId();
+            if(parseObject.getObjectId().equalsIgnoreCase(id))
+            {
+                List<String> sFacts = parseObject.getList("facts");
+                String homeImgUrl = getImageUrl(parseObject, "homeImg");
+                String backgroundUrl = getImageUrl(parseObject, "backgroundImg");
+                JSONObject result = new JSONObject();
+                JSONArray jFacts = new JSONArray(sFacts);
+                try {
+                    result.put("facts", jFacts);
+                    result.put("homeImgUrl", homeImgUrl);
+                    result.put("backgroundUrl", backgroundUrl);
+                    Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
+                    return result;
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public JSONObject getFaceGame(String id)
+    {
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("FaceGame");
+        List<ParseObject> faceGames;
+        try {
+            faceGames = q.find();
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        for(ParseObject parseObject: faceGames)
+        {   // TODO: Pick the right game based off of id
+            id = parseObject.getObjectId();
+            if(parseObject.getObjectId().equalsIgnoreCase(id))
+            {
+                List<String> sAnswers = parseObject.getList("answers");
+                String[] faceUrls =  {getImageUrl(parseObject, "face1")
+                , getImageUrl(parseObject, "face2")
+                ,getImageUrl(parseObject, "face3")
+                ,getImageUrl(parseObject, "face4")
+                ,getImageUrl(parseObject, "face5")};
+
+                try {
+                    JSONObject result = new JSONObject();
+                    JSONArray jFaces = new JSONArray(faceUrls);
+                    JSONArray jAnswers = new JSONArray(sAnswers);
+                    result.put("answers", jAnswers);
+                    result.put("faceUrls", jFaces);
+                    Log.d(Utils.TAG, "Face JSON: " + result.toString());
+                    return result;
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static String getImageUrl(ParseObject image, String key) {
+        if(image != null) {
+            try {
+                image.fetchIfNeeded();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        if(image != null && image.getParseFile(key) != null)
+            return image.getParseFile(key).getUrl();
+        return "http://dealon.herokuapp.com/default.png";
     }
 }

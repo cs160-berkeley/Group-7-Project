@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,11 +21,15 @@ public class SendActivity extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(System.currentTimeMillis() % 2 == 0) {
+
+                    // TODO: Pick faces or trivia based on button
+                    if(System.currentTimeMillis() % 2 == 0)
+                    {
                         Log.d(Utils.TAG, "Sending trivia");
                         sendTrivia();
                     }
-                    else {
+                    else
+                    {
                         Log.d(Utils.TAG, "Sending faces");
                         sendFaces();
                     }
@@ -38,38 +41,34 @@ public class SendActivity extends AppCompatActivity {
 
     private void sendTrivia()
     {
+        int theme_object = 331;
+        // TODO: Use real identifier for theme
         try {
-            JSONObject jsonObject = new JSONObject();
-            // Sample code for sending trivia
-            int theme_object = 331;
-            jsonObject.put("theme", theme_object);
-            JSONArray facts = new JSONArray();
-            facts.put("This is a sample fact");
-            facts.put("This is another sample fact");
-            facts.put("This is a third sample fact");
-            jsonObject.put("facts", facts);
-            MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_TRIVIA, jsonObject.toString());
+            JSONObject jsonObject = MainActivity.ptwUtil.getTriviaGame("someId");
+            if (jsonObject != null) {
+                jsonObject.put("theme", theme_object);
+                MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_TRIVIA, jsonObject.toString());
+            }
         }
         catch (JSONException e)
         {
-            Log.d(Utils.TAG, "Unable to construct JSONObject from trivia");
             e.printStackTrace();
         }
     }
 
     private void sendFaces()
     {
-        try{
-            int theme_object = 331;
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("theme", theme_object);
-            JSONArray faces = new JSONArray();
-            faces.put("@assets/face1");
-            faces.put("@assets/face2");
-            faces.put("@assets/face3");
-            jsonObject.put("faces", faces);
-            MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_TRIVIA, jsonObject.toString());
+        int theme_object = 331;
 
+        // TODO: Use real theme identifier
+        try
+        {
+            JSONObject jsonObject = MainActivity.ptwUtil.getFaceGame("someId");
+            if(jsonObject != null)
+            {
+                jsonObject.put("theme", theme_object);
+                MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_FACES, jsonObject.toString());
+            }
         }
         catch (JSONException e)
         {
