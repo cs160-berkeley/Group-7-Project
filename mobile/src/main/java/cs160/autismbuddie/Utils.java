@@ -6,4 +6,5 @@ package cs160.autismbuddie;
 public class Utils {
 
     public static String TAG = "ABuddie";
+    public static String KEY_MODE = "key_mode";
 }

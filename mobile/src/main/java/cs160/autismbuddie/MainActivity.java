@@ -2,7 +2,10 @@ package cs160.autismbuddie;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -17,11 +20,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
     public static PhoneToWatchUtil ptwUtil;
     private String currentMode = PhoneToWatchUtil.MODE_FREE;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ptwUtil = new PhoneToWatchUtil(getApplicationContext());
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        currentMode = mSharedPreferences.getString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_FREE);
 
 
         int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);

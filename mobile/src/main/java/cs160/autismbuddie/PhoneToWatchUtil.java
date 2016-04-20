@@ -125,10 +125,14 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                 String backgroundUrl = getImageUrl(parseObject, "backgroundImg");
                 JSONObject result = new JSONObject();
                 JSONArray jFacts = new JSONArray(sFacts);
+                String[] tutorialUrls =  {getImageUrl(parseObject, "tutorial1")
+                        , getImageUrl(parseObject, "tutorial2")
+                        ,getImageUrl(parseObject, "tutorial3")};
                 try {
                     result.put("facts", jFacts);
                     result.put("homeImgUrl", homeImgUrl);
                     result.put("backgroundUrl", backgroundUrl);
+                    result.put("tutorialUrls", new JSONArray(tutorialUrls));
                     Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
                     return result;
                 }
