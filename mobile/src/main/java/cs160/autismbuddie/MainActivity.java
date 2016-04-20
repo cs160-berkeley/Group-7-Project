@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         setContentView(R.layout.activity_main);
         ptwUtil = new PhoneToWatchUtil(getApplicationContext());
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
         currentMode = mSharedPreferences.getString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_FREE);
 
 
@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         //switch to restricted
                         modeImg.setImageResource(R.drawable.modes_restricted);
                         currentMode = PhoneToWatchUtil.MODE_RESTRICTED;
+                        mEditor.putString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_RESTRICTED);
+                        mEditor.apply();
                         ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_MODE, PhoneToWatchUtil.MODE_RESTRICTED);
                     }
                     else
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                         // switch to free
                         modeImg.setImageResource(R.drawable.modes_free);
                         currentMode = PhoneToWatchUtil.MODE_FREE;
+                        mEditor.putString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_FREE);
+                        mEditor.apply();
                         ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_MODE, PhoneToWatchUtil.MODE_FREE);
                     }
                 }
