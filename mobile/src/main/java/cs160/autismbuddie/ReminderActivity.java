@@ -24,7 +24,7 @@ public class ReminderActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d(Utils.TAG, "reminder sent, sending brush your teeth");
-                    MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_TRIVIA, "Brush your teeth");
+                    MainActivity.ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_REMINDER, "Brush your teeth");
                 }
             });
         }

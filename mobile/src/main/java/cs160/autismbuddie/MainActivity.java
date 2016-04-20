@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -16,6 +16,7 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     public static PhoneToWatchUtil ptwUtil;
+    private String currentMode = PhoneToWatchUtil.MODE_FREE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         CardView reminderCard = (CardView)findViewById(R.id.reminderCard);
         CardView packagesCard = (CardView)findViewById(R.id.packagesCard);
         CardView modesCard = (CardView)findViewById(R.id.modesCard);
+
+        final ImageView modeImg = (ImageView)findViewById(R.id.modeImg);
 
         // Set on click listeners
         if(sendCard != null)
@@ -67,9 +70,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             modesCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "Mode switched!", Toast.LENGTH_SHORT).show();
-                    ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_MODE, PhoneToWatchUtil.MODE_FREE);
-                    //TODO: Dynamically choose mode
+                    if(currentMode.equalsIgnoreCase(PhoneToWatchUtil.MODE_FREE))
+                    {
+                        //switch to restricted
+                        modeImg.setImageResource(R.drawable.modes_restricted);
+                        currentMode = PhoneToWatchUtil.MODE_RESTRICTED;
+                        ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_MODE, PhoneToWatchUtil.MODE_RESTRICTED);
+                    }
+                    else
+                    {
+                        // switch to free
+                        modeImg.setImageResource(R.drawable.modes_free);
+                        currentMode = PhoneToWatchUtil.MODE_FREE;
+                        ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_MODE, PhoneToWatchUtil.MODE_FREE);
+                    }
                 }
             });
 
