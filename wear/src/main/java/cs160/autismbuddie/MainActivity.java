@@ -1,5 +1,6 @@
 package cs160.autismbuddie;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
@@ -21,15 +22,19 @@ public class MainActivity extends WearableActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Read mode from storage, decide which layout to render
+        SharedPreferences settings = getSharedPreferences("PREF_FILE", 0);
+        boolean mode = settings.getBoolean("freeMode", false);
+        if (mode) {
+            //If mode is unrestricted, show list of activities
+            ActivityGridPageAdapter adapter = new ActivityGridPageAdapter(this, getFragmentManager());
+            GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
+            pager.setAdapter(adapter);
 
-        //If mode is unrestricted, show list of activities
-        ActivityGridPageAdapter adapter = new ActivityGridPageAdapter(this, getFragmentManager());
-        GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
-        pager.setAdapter(adapter);
-
-        DotsPageIndicator dotsIndicator = (DotsPageIndicator)findViewById(R.id.page_indicator);
-        dotsIndicator.setPager(pager);
+            DotsPageIndicator dotsIndicator = (DotsPageIndicator) findViewById(R.id.page_indicator);
+            dotsIndicator.setPager(pager);
+        } else {
+            setContentView(R.layout.activity_main_restricted);
+        }
     }
 
 }

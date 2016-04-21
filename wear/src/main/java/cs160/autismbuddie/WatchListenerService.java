@@ -1,6 +1,7 @@
 package cs160.autismbuddie;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -39,9 +40,21 @@ public class WatchListenerService extends WearableListenerService {
             Intent intent = new Intent(this, ReminderActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+        } else if (path.equals("/mode")) {
+            boolean freeMode = value.equals("free");
+            SharedPreferences settings = getSharedPreferences("PREF_FILE", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("freeMode", freeMode);
+            editor.commit();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } else if (path.equals("/package")) {
+            SharedPreferences settings = getSharedPreferences("PREF_FILE", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString("Package", value);
+            editor.commit();
         }
-
-
     }
 
     //Harder: Listen for data items that have proper themes/images as assets, then launch activity using those
