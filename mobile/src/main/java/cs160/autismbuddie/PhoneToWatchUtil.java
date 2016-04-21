@@ -31,7 +31,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
     private List<Node> nodes = new ArrayList<>();
     private String currentPath, currentMessage;
     public static String PATH_SEND_FACES = "/faces", PATH_SEND_TRIVIA = "/trivia"
-            , PATH_SEND_REMINDER = "/reminder", PATH_SEND_MODE = "/mode"
+            , PATH_SEND_REMINDER = "/reminder", PATH_SEND_MODE = "/mode", PATH_SEND_PACKAGE = "/package"
             , MODE_FREE = "free", MODE_RESTRICTED ="restricted";
 
     public PhoneToWatchUtil(Context context)
@@ -133,7 +133,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                     result.put("homeImgUrl", homeImgUrl);
                     result.put("backgroundUrl", backgroundUrl);
                     result.put("tutorialUrls", new JSONArray(tutorialUrls));
-                    Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
+                    //Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
                     return result;
                 }
                 catch (JSONException e)
@@ -171,6 +171,8 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                 ,getImageUrl(parseObject, "face3")
                 ,getImageUrl(parseObject, "face4")
                 ,getImageUrl(parseObject, "face5")};
+                String homeImgUrl = getImageUrl(parseObject, "homeImgUrl");
+                String tutorialUrl = getImageUrl(parseObject, "tutorialUrl");
 
                 try {
                     JSONObject result = new JSONObject();
@@ -178,7 +180,9 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                     JSONArray jAnswers = new JSONArray(sAnswers);
                     result.put("answers", jAnswers);
                     result.put("faceUrls", jFaces);
-                    Log.d(Utils.TAG, "Face JSON: " + result.toString());
+                    result.put("homeImgUrl", homeImgUrl);
+                    result.put("tutorialUrl", tutorialUrl);
+                    //Log.d(Utils.TAG, "Face JSON: " + result.toString());
                     return result;
                 }
                 catch (JSONException e)

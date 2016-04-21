@@ -21,18 +21,16 @@ public class SendActivity extends AppCompatActivity {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    // TODO: Pick faces or trivia based on button
-                    if(System.currentTimeMillis() % 2 == 0)
-                    {
                         Log.d(Utils.TAG, "Sending trivia");
                         sendTrivia();
-                    }
-                    else
-                    {
-                        Log.d(Utils.TAG, "Sending faces");
-                        sendFaces();
-                    }
+                }
+            });
+            imageButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Log.d(Utils.TAG, "Sending faces");
+                    sendFaces();
+                    return true;
                 }
             });
         }
