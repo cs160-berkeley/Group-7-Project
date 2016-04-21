@@ -2,6 +2,7 @@ package cs160.autismbuddie;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.wearable.view.WatchViewStub;
@@ -44,8 +45,8 @@ public class ReminderActivity extends Activity {
                                 @Override
                                 public void onFinish() {
                                     //set the new Content of your activity
-                                    v.setImageResource(R.drawable.reminder1);
-                                    screen = 0;
+                                    Intent intent = new Intent(_that, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             }.start();
                         }
@@ -64,8 +65,8 @@ public class ReminderActivity extends Activity {
                                 @Override
                                 public void onFinish() {
                                     //set the new Content of your activity
-                                    v.setImageResource(R.drawable.reminder1);
-                                    screen = 0;
+                                    Intent intent = new Intent(_that, MainActivity.class);
+                                    startActivity(intent);
                                 }
                             }.start();
                         }

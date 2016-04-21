@@ -67,6 +67,8 @@ public class TriviaActivity extends Activity {
 
                     public void onSwipeBottom() {
                         Log.v("BOT", "BOT");
+                        Intent intent = new Intent(_that, MainActivity.class);
+                        startActivity(intent);
                     }
                 });
             }

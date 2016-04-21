@@ -2,18 +2,256 @@
 <items version="2" >
 
     <item
-        jar="/Users/GusSilva/.gradle/caches/modules-2/files-2.1/com.parse/parse-android/1.13.0/58a7d54b6a4f28be11f0cecec93097eddf473e6f/parse-android-1.13.0.jar"
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-location-8.4.0_dc108befcb3959fb14f6266c5567d110e0055031.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-drive-8.4.0_edaf649c65dde0b52bc19a4a671125da13d5650f.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-safetynet-8.4.0_09e550ac250c6986a679a1a1fbb5d1a3f3fad90c.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-cast-8.4.0_b6fd9c1d5bca4412962cc3d3153e539faf02227a.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.3.0_47134e6b74574e5c5673f032a9c3c844b0fb90a5.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-gcm-8.4.0_ee90d2dcb859301fd407b9345cb80f45dc36a102.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-base-8.4.0_febf8af36768d83088499f635838d3458c01cab8.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-mediarouter-v7-23.0.0_c377f0fc03d32bc106e8ecca62bcd9282b5f2abe.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/support-annotations-23.3.0_c16a8de3af6570bc0151cf9c1ada7d23b9ea68d2.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-identity-8.4.0_89c43d78ae5986e93983bd07da7e091f5feebf98.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.3.0_256af95e8834671000589fb549da529295d7891b.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-design-23.3.0_1d6d7c2c205df5b702d1c04b24e04c64cd795862.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-plus-8.4.0_e70123bda0bcea118a705b8b85eb23205a816930.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.3.0_9659d54c5f1c550d2e11f67e88966a8857e9e024.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/.gradle/caches/modules-2/files-2.1/com.parse/parse-android/1.13.0/58a7d54b6a4f28be11f0cecec93097eddf473e6f/parse-android-1.13.0.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="58a7d54b6a4f28be11f0cecec93097eddf473e6f">
-        <dex dex="/Users/GusSilva/Projects/AndroidStudio Projects/ABuddie/mobile/build/intermediates/pre-dexed/debug/parse-android-1.13.0_65bfdf2a832c3a04f456cf939e64e4588ef65165.jar" />
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/parse-android-1.13.0_db034bc1f84e2b65f94cd11b7b3d0b88984d3c74.jar" />
     </item>
     <item
-        jar="/Users/GusSilva/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.4.0_e99b19056f85e8cdb4403a2c852ada374253756e.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.3.0_9154ba4b3bf5d7b0371879cb146533676b59edfe.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-panorama-8.4.0_33c54a128cfc068d129a05071d09f26929a73969.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/internal_impl-23.0.0_5fa86b1341af6f99aca3bee58b658656856a5850.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="04de44f90606c77f3b28cf44861f306290505aac">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-maps-8.4.0_4e731421bede27b3517c5a2025518bf5cfa0c9e8.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="false"
         revision="23.0.2"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/GusSilva/Projects/AndroidStudio Projects/ABuddie/mobile/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_daaec88b6d98b640ed784c6c87c301041d2fa7d2.jar" />
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_16cefe5703546f034f07a274549884c831c97d91.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.3.0_6fc2d872621fa90946d183d70f15aad7b61331eb.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/internal_impl-23.3.0_dc585388c33a8cbf7cae20a4ac228ae2eecde05f.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-ads-8.4.0_fe963bf3c842b7ec757e329ba30aa4767ddfb5b7.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-measurement-8.4.0_e93ae74ab838f390c33ef8189262d289639df8e8.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-wearable-8.4.0_70f94eff72d4c4408d3ff78d96fc78e82a56954e.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="dfecc4d835cdabcdecf7e95f0d20a3ef1e9d8ef4">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-vision-8.4.0_be332ef6c975a77c5e067f5d9511549b27b08775.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="966e5771a5a2ebfb31bf00d7cd6cd2546d245517">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-auth-8.4.0_c867016bc100e3fc6942dd657563e8b360bcdceb.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-games-8.4.0_49c488cc9c20d0179c87ceb67fd35d75459479f6.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-wallet-8.4.0_ad9a97459a3f76947a5f68f79e9355c14dce0138.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-fitness-8.4.0_f39cee085956b12ef849301a1645295b7157cb84.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-analytics-8.4.0_48fe11a0b6696be06852c09da28b20c2947fae15.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appinvite-8.4.0_181f00380b0b785f492b46598f449d230d2485a8.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.3.0_d7cef0c37edefa2673843a8b4eab00b86354e965.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.4.0_02a245f5c2c634b89e39c57ab40e2654fc3ab7e4.jar" />
+    </item>
+    <item
+        jar="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.4.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="9cad249cf62751a323d9af568caf12284b7d6062">
+        <dex dex="/Users/robinhu/AndroidStudioProjects/Group-7-Project/mobile/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-nearby-8.4.0_5bac8eaf921af3dd7183f91b1cc1b6f5f6ee5ebf.jar" />
     </item>
 
 </items>
