@@ -1,7 +1,9 @@
 package cs160.autismbuddie;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -106,7 +108,49 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         }
     }
 
-    public JSONObject getTriviaGame(String id)
+    public JSONObject queryForPackageJSON(String id)
+    {
+        ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Package");
+        List<ParseObject> packages;
+        try {
+            packages = q.find();
+        }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        for(ParseObject parseObject: packages)
+        {   // TODO: Pick the right game based off of id
+            id = parseObject.getString("name");
+            if(parseObject.getString("name").equalsIgnoreCase(id))
+            {
+                ParseObject facesGame = parseObject.getParseObject("Faces");
+                ParseObject triviaGame = parseObject.getParseObject("Trivia");
+
+                JSONObject pack = new JSONObject();
+                try {
+                    pack.put("ID", id);
+                    JSONObject trivia = getTriviaJSON(triviaGame);
+                    JSONObject faces = getFacesJSON(facesGame);
+                    pack.put("Faces", faces);
+                    pack.put("Trivia", trivia);
+                    SharedPreferences.Editor mEditor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+                    mEditor.putString(Utils.KEY_PACKAGE, pack.toString());
+                    mEditor.apply();
+                    return pack;
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public JSONObject queryForTriviaJSON(String id)
     {
         ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("TriviaGame");
         List<ParseObject> triviaGames;
@@ -123,35 +167,13 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         {   // TODO: Pick the right game based off of id
             id = parseObject.getObjectId();
             if(parseObject.getObjectId().equalsIgnoreCase(id))
-            {
-                List<String> sFacts = parseObject.getList("facts");
-                String homeImgUrl = getImageUrl(parseObject, "homeImg");
-                String backgroundUrl = getImageUrl(parseObject, "backgroundImg");
-                JSONObject result = new JSONObject();
-                JSONArray jFacts = new JSONArray(sFacts);
-                String[] tutorialUrls =  {getImageUrl(parseObject, "tutorial1")
-                        , getImageUrl(parseObject, "tutorial2")
-                        ,getImageUrl(parseObject, "tutorial3")};
-                try {
-                    result.put("facts", jFacts);
-                    result.put("homeImgUrl", homeImgUrl);
-                    result.put("backgroundUrl", backgroundUrl);
-                    result.put("tutorialUrls", new JSONArray(tutorialUrls));
-                    Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
-                    return result;
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
+                return getTriviaJSON(parseObject);
         }
 
         return null;
     }
 
-    public JSONObject getFaceGame(String id)
+    public JSONObject queryForFaceJSON(String id)
     {
         ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("FaceGame");
         List<ParseObject> faceGames;
@@ -168,36 +190,69 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         {   // TODO: Pick the right game based off of id
             id = parseObject.getObjectId();
             if(parseObject.getObjectId().equalsIgnoreCase(id))
-            {
-                List<String> sAnswers = parseObject.getList("answers");
-                String[] faceUrls =  {getImageUrl(parseObject, "face1")
+                return getFacesJSON(parseObject);
+        }
+
+        return null;
+    }
+
+    public JSONObject getTriviaJSON(ParseObject parseObject)
+    {
+        if(parseObject == null)
+            return null;
+        String homeImgUrl = getImageUrl(parseObject, "homeImg");
+        String backgroundUrl = getImageUrl(parseObject, "backgroundImg");
+        JSONObject result = new JSONObject();
+        JSONArray jFacts = parseObject.getJSONArray("facts");
+        Log.d(Utils.TAG, "jFacts: " + jFacts.toString());
+        String[] tutorialUrls =  {getImageUrl(parseObject, "tutorial1")
+                , getImageUrl(parseObject, "tutorial2")
+                ,getImageUrl(parseObject, "tutorial3")};
+        try
+        {
+            result.put("facts", jFacts);
+            result.put("homeImgUrl", homeImgUrl);
+            result.put("backgroundUrl", backgroundUrl);
+            result.put("tutorialUrls", new JSONArray(tutorialUrls));
+            Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
+            return result;
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public JSONObject getFacesJSON(ParseObject parseObject)
+    {
+        if(parseObject == null)
+            return null;
+        List<String> sAnswers = parseObject.getList("answers");
+        String[] faceUrls =  {getImageUrl(parseObject, "face1")
                 , getImageUrl(parseObject, "face2")
                 ,getImageUrl(parseObject, "face3")
                 ,getImageUrl(parseObject, "face4")
                 ,getImageUrl(parseObject, "face5")};
-                String homeImgUrl = getImageUrl(parseObject, "homeImgUrl");
-                String tutorialUrl = getImageUrl(parseObject, "tutorialUrl");
+        String homeImgUrl = getImageUrl(parseObject, "homeImgUrl");
+        String tutorialUrl = getImageUrl(parseObject, "tutorialUrl");
 
-                try {
-                    JSONObject result = new JSONObject();
-                    JSONArray jFaces = new JSONArray(faceUrls);
-                    JSONArray jAnswers = new JSONArray(sAnswers);
-                    result.put("answers", jAnswers);
-                    result.put("faceUrls", jFaces);
-                    result.put("homeImgUrl", homeImgUrl);
-                    result.put("tutorialUrl", tutorialUrl);
-                    Log.d(Utils.TAG, "Face JSON: " + result.toString());
-                    return result;
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                    return null;
-                }
-            }
+        try {
+            JSONObject result = new JSONObject();
+            JSONArray jFaces = new JSONArray(faceUrls);
+            JSONArray jAnswers = parseObject.getJSONArray("answers");
+            result.put("answers", jAnswers);
+            result.put("faceUrls", jFaces);
+            result.put("homeImgUrl", homeImgUrl);
+            result.put("tutorialUrl", tutorialUrl);
+            Log.d(Utils.TAG, "Face JSON: " + result.toString());
+            return result;
         }
-
-        return null;
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static String getImageUrl(ParseObject image, String key) {

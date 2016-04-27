@@ -61,7 +61,7 @@ public class SendActivity extends AppCompatActivity {
                 jsonObject = packJSON.getJSONObject("Trivia");
             }
             else
-                jsonObject = MainActivity.ptwUtil.getTriviaGame("someId");
+                jsonObject = MainActivity.ptwUtil.queryForTriviaJSON("someId");
 
             if (jsonObject != null) {
                 jsonObject.put("theme", theme_object);
@@ -89,7 +89,7 @@ public class SendActivity extends AppCompatActivity {
                 jsonObject = packJSON.getJSONObject("Faces");
             }
             else
-                jsonObject = MainActivity.ptwUtil.getFaceGame("someId");
+                jsonObject = MainActivity.ptwUtil.queryForFaceJSON("someId");
 
             if(jsonObject != null)
             {

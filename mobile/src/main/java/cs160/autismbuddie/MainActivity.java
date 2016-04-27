@@ -23,9 +23,6 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     public static PhoneToWatchUtil ptwUtil;
@@ -143,32 +140,12 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         }
 
 
+        // Send current package on startup
         String currentPackageJSON = mSharedPreferences.getString(Utils.KEY_PACKAGE, null);
         if(currentPackageJSON == null)
-        {
-            JSONObject pack = new JSONObject();
-            try {
-                pack.put("ID", "blahblah"); //TODO: Use a more realistic identifier
-                JSONObject trivia = ptwUtil.getTriviaGame("pokemon");
-                JSONObject faces = ptwUtil.getFaceGame("pokemon");
-                pack.put("Faces", faces);
-                pack.put("Trivia", trivia);
-                mEditor.putString(Utils.KEY_PACKAGE, pack.toString());
-                Log.d(Utils.TAG, "Sending Created: " + pack.toString());
-                ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_PACKAGE, pack.toString());
-
-            }
-            catch (JSONException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-        else
-        {
-            Log.d(Utils.TAG, "Sending: " + currentPackageJSON);
-            ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_PACKAGE, currentPackageJSON);
-        }
+            currentPackageJSON = ptwUtil.queryForPackageJSON("Pokemon").toString(); //TODO: Use a default identifier
+        Log.d(Utils.TAG, "Sending: " + currentPackageJSON);
+        ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_PACKAGE, currentPackageJSON);
 
 
 
