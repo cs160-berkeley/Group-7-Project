@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             reminderCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), ReminderActivity.class);
-                    startActivity(intent);
+                    // TODO: Animate message sending
                 }
             });
         if(packagesCard != null)

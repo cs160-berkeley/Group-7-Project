@@ -31,7 +31,6 @@ public class SendActivity extends AppCompatActivity {
         PackagesCardGridAdapter adt = new PackagesCardGridAdapter();
         packsRecycler.setAdapter(adt);
         packsRecycler.setNestedScrollingEnabled(false);
-        packsRecycler.setHasFixedSize(false);
 
         // Set up send buttons
         Button triviaSend = (Button)findViewById(R.id.triviaSend);

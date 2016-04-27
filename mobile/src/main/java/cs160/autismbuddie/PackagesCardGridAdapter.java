@@ -14,9 +14,17 @@ import java.util.ArrayList;
 public class PackagesCardGridAdapter extends RecyclerView.Adapter<PackagesCardGridAdapter.ViewHolder> {
 
     private ArrayList<Reminder> reminders = new ArrayList<>();
+    private int SIZE;
     public PackagesCardGridAdapter()
     {
         //TODO: Take in list of packages and draw accordingly
+        SIZE = 8;
+    }
+
+    //TODO: v v v Delete this v v v
+    public PackagesCardGridAdapter(int sz)
+    {
+        SIZE = sz;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -32,7 +40,7 @@ public class PackagesCardGridAdapter extends RecyclerView.Adapter<PackagesCardGr
 
     @Override
     public int getItemCount() {
-        return 8;
+        return SIZE;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder
