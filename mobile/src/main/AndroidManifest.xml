@@ -26,7 +26,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".SendActivity"></activity>
+        <activity android:name=".SendActivity"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
 
 </manifest>

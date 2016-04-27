@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ptwUtil = new PhoneToWatchUtil(getApplicationContext());
+        if(ptwUtil == null)
+            ptwUtil = new PhoneToWatchUtil(getApplicationContext());
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
         currentMode = mSharedPreferences.getString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_FREE);

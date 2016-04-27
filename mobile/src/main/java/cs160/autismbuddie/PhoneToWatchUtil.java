@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,6 +34,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
     public static String PATH_SEND_FACES = "/faces", PATH_SEND_TRIVIA = "/trivia"
             , PATH_SEND_REMINDER = "/reminder", PATH_SEND_MODE = "/mode", PATH_SEND_PACKAGE = "/package"
             , MODE_FREE = "free", MODE_RESTRICTED ="restricted";
+    private Context mContext;
 
     public PhoneToWatchUtil(Context context)
     {
@@ -50,6 +52,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                 .server("https://abuddie.herokuapp.com/parse/")
                 .enableLocalDataStore()
                 .build());
+        mContext = context;
     }
 
     @Override
@@ -63,6 +66,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                         if(nodes == null || nodes.size() < 1)
                         {
                             Log.d(Utils.TAG, "Watch is not connected!");
+                            Toast.makeText(mContext, "No watch found", Toast.LENGTH_SHORT).show();
                             return;
                         }
                         for (Node node : nodes)
@@ -133,7 +137,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                     result.put("homeImgUrl", homeImgUrl);
                     result.put("backgroundUrl", backgroundUrl);
                     result.put("tutorialUrls", new JSONArray(tutorialUrls));
-                    //Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
+                    Log.d(Utils.TAG, "Trivia JSON: " + result.toString());
                     return result;
                 }
                 catch (JSONException e)
@@ -182,7 +186,7 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
                     result.put("faceUrls", jFaces);
                     result.put("homeImgUrl", homeImgUrl);
                     result.put("tutorialUrl", tutorialUrl);
-                    //Log.d(Utils.TAG, "Face JSON: " + result.toString());
+                    Log.d(Utils.TAG, "Face JSON: " + result.toString());
                     return result;
                 }
                 catch (JSONException e)
