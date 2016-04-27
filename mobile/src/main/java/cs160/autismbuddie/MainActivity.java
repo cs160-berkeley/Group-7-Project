@@ -1,5 +1,7 @@
 package cs160.autismbuddie;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,7 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -24,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     private String currentMode = PhoneToWatchUtil.MODE_FREE;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
+    private TextView reminderText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +52,15 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             d.show();
         }
 
-        // Bind card views
-        CardView sendCard = (CardView)findViewById(R.id.sendCard);
-        CardView reminderCard = (CardView)findViewById(R.id.reminderCard);
-        CardView packagesCard = (CardView)findViewById(R.id.packagesCard);
-        CardView modesCard = (CardView)findViewById(R.id.modesCard);
+        // Bind frame views
+        FrameLayout sendFrame = (FrameLayout)findViewById(R.id.sendFrame);
+        FrameLayout reminderFrame = (FrameLayout)findViewById(R.id.reminderFrame);
+        FrameLayout packagesFrame = (FrameLayout)findViewById(R.id.packagesFrame);
+        FrameLayout modesFrame = (FrameLayout)findViewById(R.id.modesFrame);
+
+        // This will be useful later to cancel message send
+        reminderText = (TextView)findViewById(R.id.reminderText);
+        ImageButton sendReminderButton = (ImageButton) findViewById(R.id.sendReminderButton);
 
         final ImageView modeImg = (ImageView)findViewById(R.id.modeImg);
         if(currentMode.equalsIgnoreCase(PhoneToWatchUtil.MODE_FREE) && modeImg != null)
@@ -56,9 +69,9 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
             modeImg.setImageResource(R.drawable.modes_restricted);
 
         // Set on click listeners
-        if(sendCard != null)
+        if(sendFrame != null)
         {
-            sendCard.setOnClickListener(new View.OnClickListener() {
+            sendFrame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), SendActivity.class);
@@ -66,23 +79,32 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                 }
             });
         }
-        if(reminderCard != null)
-            reminderCard.setOnClickListener(new View.OnClickListener() {
+        if(reminderFrame != null)
+            reminderFrame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // TODO: Animate message sending
+                    CardView cardView = (CardView)findViewById(R.id.reminderMsgCard);
+                    if(cardView.getVisibility() == View.VISIBLE)
+                    {
+                        hideReminderCard(cardView);
+                    }
+                    else
+                    {
+                        showReminderCard(cardView);
+                    }
                 }
             });
-        if(packagesCard != null)
-            packagesCard.setOnClickListener(new View.OnClickListener() {
+        if(packagesFrame != null)
+            packagesFrame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), GetPackagesActivity.class);
                     startActivity(intent);
                 }
             });
-        if(modesCard != null)
-            modesCard.setOnClickListener(new View.OnClickListener() {
+        if(modesFrame != null)
+            modesFrame.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(currentMode.equalsIgnoreCase(PhoneToWatchUtil.MODE_FREE))
@@ -105,6 +127,20 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
                     }
                 }
             });
+        if(sendReminderButton != null)
+        {
+            sendReminderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    EditText editText = (EditText)findViewById(R.id.reminderMsg);
+                    String message = editText.getText().toString();
+                    ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_REMINDER, message);
+                    Toast.makeText(getApplicationContext(), "Reminder sent!", Toast.LENGTH_SHORT).show();
+                    hideReminderCard((CardView)findViewById(R.id.reminderMsgCard));
+                    editText.setText("");
+                }
+            });
+        }
 
 
         String currentPackageJSON = mSharedPreferences.getString(Utils.KEY_PACKAGE, null);
@@ -142,5 +178,53 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
     public void onDestroy() {
         super.onDestroy();
         ptwUtil.disconnect();
+    }
+
+    private void showReminderCard(CardView cardView)
+    {
+        // previously invisible view
+        // get the center for the clipping circle
+        int cx = cardView.getWidth() / 2;
+        int cy = cardView.getHeight() / 2;
+
+        // get the final radius for the clipping circle
+        float finalRadius = (float) Math.hypot(cx, cy);
+
+        // create the animator for this view (the start radius is zero)
+        Animator anim =
+                ViewAnimationUtils.createCircularReveal(cardView, cx, cy, 0, finalRadius);
+
+        // make the view visible and start the animation
+        cardView.setVisibility(View.VISIBLE);
+        anim.start();
+        reminderText.setText("CANCEL");
+    }
+
+    private void hideReminderCard(final CardView cardView)
+    {
+        // get the center for the clipping circle
+        int cx = cardView.getWidth() / 2;
+        int cy = cardView.getHeight() / 2;
+
+        // get the initial radius for the clipping circle
+        float initialRadius = (float) Math.hypot(cx, cy);
+
+        // create the animation (the final radius is zero)
+        Animator anim =
+                ViewAnimationUtils.createCircularReveal(cardView, cx, cy, initialRadius, 0);
+
+        // make the view invisible when the animation is done
+        anim.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                cardView.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        // start the animation
+        anim.start();
+        reminderText.setText("Reminders");
+
     }
 }
