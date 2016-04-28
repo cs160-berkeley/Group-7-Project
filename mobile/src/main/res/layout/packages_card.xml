@@ -5,17 +5,19 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        android:id="@+id/cardView">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/minecraft"
+                android:layout_height="150dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:id="@+id/cardImg"
+                android:src="@color/cardLoading" />
             <TextView
                 android:layout_width="match_parent"
                 android:textAlignment="center"

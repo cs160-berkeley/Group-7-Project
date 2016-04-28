@@ -37,6 +37,8 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
             , PATH_SEND_REMINDER = "/reminder", PATH_SEND_MODE = "/mode", PATH_SEND_PACKAGE = "/package"
             , MODE_FREE = "free", MODE_RESTRICTED ="restricted";
     private Context mContext;
+    private List<ParseObject> packages;
+    public ParseObject currPackage;
 
     public PhoneToWatchUtil(Context context)
     {
@@ -108,44 +110,30 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         }
     }
 
-    public JSONObject queryForPackageJSON(String id)
+    public void queryForPackages()
     {
         ParseQuery<ParseObject> q = new ParseQuery<ParseObject>("Package");
-        List<ParseObject> packages;
-        try {
+        try
+        {
             packages = q.find();
+            currPackage = packages.get(0);
         }
         catch (ParseException e)
         {
             e.printStackTrace();
-            return null;
         }
+    }
+
+    public JSONObject queryForPackageJSON(String id)
+    {
+        if(packages == null)
+            queryForPackages();
 
         for(ParseObject parseObject: packages)
         {   // TODO: Pick the right game based off of id
             id = parseObject.getString("name");
             if(parseObject.getString("name").equalsIgnoreCase(id))
-            {
-                ParseObject facesGame = parseObject.getParseObject("Faces");
-                ParseObject triviaGame = parseObject.getParseObject("Trivia");
-
-                JSONObject pack = new JSONObject();
-                try {
-                    pack.put("ID", id);
-                    JSONObject trivia = getTriviaJSON(triviaGame);
-                    JSONObject faces = getFacesJSON(facesGame);
-                    pack.put("Faces", faces);
-                    pack.put("Trivia", trivia);
-                    SharedPreferences.Editor mEditor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
-                    mEditor.putString(Utils.KEY_PACKAGE, pack.toString());
-                    mEditor.apply();
-                    return pack;
-                }
-                catch (JSONException e)
-                {
-                    e.printStackTrace();
-                }
-            }
+                return getPackageJSON(parseObject);
         }
         return null;
     }
@@ -237,7 +225,8 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         String homeImgUrl = getImageUrl(parseObject, "homeImgUrl");
         String tutorialUrl = getImageUrl(parseObject, "tutorialUrl");
 
-        try {
+        try
+        {
             JSONObject result = new JSONObject();
             JSONArray jFaces = new JSONArray(faceUrls);
             JSONArray jAnswers = parseObject.getJSONArray("answers");
@@ -253,6 +242,44 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
             e.printStackTrace();
             return null;
         }
+    }
+
+    public JSONObject getPackageJSON(ParseObject parseObject)
+    {
+        if(parseObject == null)
+            return null;
+
+        ParseObject facesGame = parseObject.getParseObject("Faces");
+        ParseObject triviaGame = parseObject.getParseObject("Trivia");
+        String url = getImageUrl(parseObject, "cardImage");
+
+        JSONObject pack = new JSONObject();
+        try {
+            pack.put("ID", parseObject.getString("name"));
+            pack.put("imageUrl", url);
+            JSONObject trivia = getTriviaJSON(triviaGame);
+            JSONObject faces = getFacesJSON(facesGame);
+            pack.put("Faces", faces);
+            pack.put("Trivia", trivia);
+            SharedPreferences.Editor mEditor = PreferenceManager.getDefaultSharedPreferences(mContext).edit();
+            mEditor.putString(Utils.KEY_PACKAGE, pack.toString());
+            mEditor.apply();
+            return pack;
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<ParseObject> getPackages()
+    {
+        if (packages == null)
+        {
+            queryForPackages();
+        }
+        return packages;
     }
 
     public static String getImageUrl(ParseObject image, String key) {

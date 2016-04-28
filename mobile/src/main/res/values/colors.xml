@@ -9,4 +9,5 @@
     <color name="remindersYellow">#FFBB5A</color>
     <color name="packagesBlue">#3280C8</color>
     <color name="modesRed">#EF476F</color>
+    <color name="cardLoading">#cccccc</color>
 </resources>

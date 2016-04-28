@@ -31,7 +31,8 @@
             android:textColor="@android:color/white"
             android:layout_margin="10dp"
             android:textSize="20sp"
-            android:fontFamily="sans-serif-light" />
+            android:fontFamily="sans-serif-condensed"
+            android:textStyle="bold" />
     </LinearLayout>
 </FrameLayout>
 
@@ -100,8 +101,9 @@
                 android:textColor="@android:color/white"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:fontFamily="sans-serif-light"
-                android:id="@+id/reminderText" />
+                android:fontFamily="sans-serif-condensed"
+                android:id="@+id/reminderText"
+                android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>
 
@@ -129,7 +131,8 @@
                 android:textColor="@android:color/white"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:fontFamily="sans-serif-light" />
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>
 
@@ -185,7 +188,8 @@
                 android:textColor="@android:color/white"
                 android:layout_margin="10dp"
                 android:textSize="20sp"
-                android:fontFamily="sans-serif-light" />
+                android:fontFamily="sans-serif-condensed"
+                android:textStyle="bold" />
         </LinearLayout>
     </FrameLayout>
 

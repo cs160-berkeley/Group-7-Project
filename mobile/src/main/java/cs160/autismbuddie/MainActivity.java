@@ -22,12 +22,19 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements ActivityCompat.OnRequestPermissionsResultCallback {
 
     public static PhoneToWatchUtil ptwUtil;
     private String currentMode = PhoneToWatchUtil.MODE_FREE;
-    private SharedPreferences mSharedPreferences;
+    public static SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
     private TextView reminderText;
     @Override
@@ -39,6 +46,30 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mEditor = mSharedPreferences.edit();
         currentMode = mSharedPreferences.getString(Utils.KEY_MODE, PhoneToWatchUtil.MODE_FREE);
+
+        DisplayImageOptions options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        File cacheDir;
+        if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
+            cacheDir=new File(android.os.Environment.getExternalStorageDirectory(),"ABuddie");
+        else
+            cacheDir=getApplicationContext().getCacheDir();
+        if(!cacheDir.exists())
+            cacheDir.mkdirs();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .memoryCache(new WeakMemoryCache())
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCache(new UnlimitedDiskCache(cacheDir))
+                .threadPoolSize(5)
+                .defaultDisplayImageOptions(options)
+                .build();
+
+
+        ImageLoader.getInstance().init(config);
+
 
 
         int result = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -141,9 +172,10 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
 
         // Send current package on startup
-        String currentPackageJSON = mSharedPreferences.getString(Utils.KEY_PACKAGE, null);
-        if(currentPackageJSON == null)
-            currentPackageJSON = ptwUtil.queryForPackageJSON("Pokemon").toString(); //TODO: Use a default identifier
+        // TODO: Do we want to store in sharedPrefs ... or nah?
+        // String currentPackageJSON = mSharedPreferences.getString(Utils.KEY_PACKAGE, null);
+        //if(currentPackageJSON == null)
+        String currentPackageJSON = ptwUtil.queryForPackageJSON("Pokemon").toString(); //TODO: Use a default identifier
         Log.d(Utils.TAG, "Sending: " + currentPackageJSON);
         ptwUtil.sendMessage(PhoneToWatchUtil.PATH_SEND_PACKAGE, currentPackageJSON);
 

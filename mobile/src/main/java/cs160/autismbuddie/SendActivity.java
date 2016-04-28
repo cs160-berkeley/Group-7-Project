@@ -9,13 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.parse.ParseObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class SendActivity extends AppCompatActivity {
 
     private SharedPreferences mSharedPrefs;
+    private TextView currPackText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +31,28 @@ public class SendActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        currPackText = (TextView)findViewById(R.id.currPackText);
+
         // Set up Packages Grid
+        final ArrayList<ParseObject> packages = new ArrayList<>(MainActivity.ptwUtil.getPackages());
         RecyclerView packsRecycler = (RecyclerView)findViewById(R.id.sendRecycler);
         packsRecycler.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
-        PackagesCardGridAdapter adt = new PackagesCardGridAdapter();
+        PackagesCardGridAdapter adt = new PackagesCardGridAdapter(packages
+                , new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        Integer tag = (Integer)v.getTag();
+                        int pos = tag.intValue();
+                        //TODO: get package and update view
+                        ParseObject curr = packages.get(pos);
+                        if(curr != null)
+                            MainActivity.ptwUtil.currPackage = curr;
+                        currPackText.setText("Current Pack: " + curr.getString("name"));
+                    }
+                }
+                , getApplicationContext());
         packsRecycler.setAdapter(adt);
         packsRecycler.setNestedScrollingEnabled(false);
 
