@@ -10,6 +10,27 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/faceshome"
-        android:id="@+id/faces_image"/>
+        android:src="@drawable/faces_home"
+        android:id="@+id/faces_home"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/faces_tut"
+        android:id="@+id/faces_tut"
+        android:visibility="gone"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/faces_back"
+        android:id="@+id/faces_back"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/faces_hiscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HISCORE"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000000"
+        android:visibility="gone"/>
 </LinearLayout>
