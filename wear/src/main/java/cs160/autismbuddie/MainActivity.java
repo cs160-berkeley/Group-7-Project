@@ -26,7 +26,9 @@ public class MainActivity extends WearableActivity {
         boolean mode = settings.getBoolean("freeMode", false);
         if (mode) {
             //If mode is unrestricted, show list of activities
-            ActivityGridPageAdapter adapter = new ActivityGridPageAdapter(this, getFragmentManager());
+            String pack = settings.getString("Package", "");
+
+            ActivityGridPageAdapter adapter = new ActivityGridPageAdapter(this, getFragmentManager(), pack);
             GridViewPager pager = (GridViewPager) findViewById(R.id.pager);
             pager.setAdapter(adapter);
 

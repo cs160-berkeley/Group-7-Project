@@ -5,10 +5,60 @@
     android:layout_height="match_parent"
     tools:context="cs160.autismbuddie.FacesActivity"
     tools:deviceIds="wear_round">
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/faceshome"
-        android:id="@+id/faces_image"/>
+        android:src="@drawable/faces_home"
+        android:id="@+id/faces_home"
+        android:visibility="visible"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/faces_tut"
+        android:id="@+id/faces_tut"
+        android:visibility="gone"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/faces_back"
+        android:id="@+id/faces_back"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/faces_hiscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="HISCORE:9999"
+        android:textSize="20px"
+        android:layout_marginTop="30px"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFB600"
+        android:visibility="gone"/>
+    <TextView
+        android:id="@+id/faces_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCORE:0"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="260px"
+        android:textColor="#FFB600"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/faces_image"
+        android:layout_width="190px"
+        android:layout_height="190px"
+        android:src="@drawable/faces_1"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/faces_wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/faces_wrong"
+        android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/faces_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/faces_right"
+        android:visibility="gone"/>
 </RelativeLayout>
