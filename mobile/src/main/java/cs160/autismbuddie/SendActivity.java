@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.parse.ParseObject;
 
 import org.json.JSONException;
@@ -22,6 +24,7 @@ public class SendActivity extends AppCompatActivity {
 
     private SharedPreferences mSharedPrefs;
     private TextView currPackText;
+    private ImageView currPackImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,9 @@ public class SendActivity extends AppCompatActivity {
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         currPackText = (TextView)findViewById(R.id.currPackText);
+        currPackImg = (ImageView)findViewById(R.id.currPackImg);
+
+        updateCurrentPackageView(MainActivity.ptwUtil.currPackage);
 
         // Set up Packages Grid
         final ArrayList<ParseObject> packages = new ArrayList<>(MainActivity.ptwUtil.getPackages());
@@ -49,7 +55,7 @@ public class SendActivity extends AppCompatActivity {
                         ParseObject curr = packages.get(pos);
                         if(curr != null)
                             MainActivity.ptwUtil.currPackage = curr;
-                        currPackText.setText("Current Pack: " + curr.getString("name"));
+                        updateCurrentPackageView(curr);
                     }
                 }
                 , getApplicationContext());
@@ -126,5 +132,14 @@ public class SendActivity extends AppCompatActivity {
             Log.d(Utils.TAG, "Unable to construct JSONObject from faces");
             e.printStackTrace();
         }
+    }
+
+    private void updateCurrentPackageView(ParseObject currPackage)
+    {
+        if(currPackage != null)
+        currPackText.setText("Current Pack: " + currPackage.getString("name"));
+        String imgUrl = PhoneToWatchUtil.getImageUrl(currPackage, "cardImage");
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(imgUrl, currPackImg);
     }
 }

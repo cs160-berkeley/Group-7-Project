@@ -27,6 +27,7 @@ import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 
 import java.io.File;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ActivityCompat.On
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
+                .displayer(new FadeInBitmapDisplayer(400))
                 .cacheOnDisk(true)
                 .build();
         File cacheDir;

@@ -292,6 +292,6 @@ public class PhoneToWatchUtil implements GoogleApiClient.ConnectionCallbacks
         }
         if(image != null && image.getParseFile(key) != null)
             return image.getParseFile(key).getUrl();
-        return "http://dealon.herokuapp.com/default.png";
+        return null;
     }
 }
