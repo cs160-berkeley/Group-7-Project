@@ -9,6 +9,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/reminder1"
+        android:src="@drawable/reminder_back"
         android:id="@+id/reminder_img"/>
 </RelativeLayout>

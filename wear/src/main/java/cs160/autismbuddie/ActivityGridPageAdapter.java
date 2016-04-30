@@ -3,6 +3,7 @@ package cs160.autismbuddie;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.wearable.view.FragmentGridPagerAdapter;
 
@@ -15,16 +16,12 @@ import org.json.JSONObject;
 public class ActivityGridPageAdapter extends FragmentGridPagerAdapter{
 
     private final Context mContext;
-    private JSONObject pack;
+    private final String[] home_screen_strings;
 
-    public ActivityGridPageAdapter(Context ctx, FragmentManager fm, String p) {
+    public ActivityGridPageAdapter(Context ctx, FragmentManager fm, String[] h) {
         super(fm);
         mContext = ctx;
-        try {
-            pack = new JSONObject(p);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        home_screen_strings = h;
     }
 
     @Override
@@ -32,19 +29,7 @@ public class ActivityGridPageAdapter extends FragmentGridPagerAdapter{
         ActivityFragment act = new ActivityFragment();
         Bundle b = new Bundle();
         b.putInt("activity", i1);
-        if (i1 == 0) {
-            try {
-                b.putString("home_url", pack.getJSONObject("Faces").getString("homeImgUrl"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (i1 == 1) {
-            try {
-                b.putString("home_url", pack.getJSONObject("Trivia").getString("homeImgUrl"));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        b.putString("home_screen", home_screen_strings[i1]);
         act.setArguments(b);
         return act;
     }

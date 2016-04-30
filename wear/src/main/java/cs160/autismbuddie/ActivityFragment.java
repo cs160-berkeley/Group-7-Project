@@ -3,6 +3,7 @@ package cs160.autismbuddie;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,6 +23,11 @@ public class ActivityFragment extends Fragment{
         Bundle b = getArguments();
 
         ImageView act = (ImageView) v.findViewById(R.id.img);
+        String home_screen = b.getString("home_screen", "");
+        if (home_screen.length() > 0) {
+            Bitmap btmp = MainActivity.getBitmapFromString(home_screen);
+            act.setImageBitmap(btmp);
+        }
         if (b.getInt("activity") == 0) {
             act.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -32,7 +38,6 @@ public class ActivityFragment extends Fragment{
                 }
             });
         } else if (b.getInt("activity") == 1) {
-            act.setImageResource(R.drawable.triviahome);
             act.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

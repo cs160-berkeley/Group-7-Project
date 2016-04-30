@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 public class FacesActivity extends Activity {
 
@@ -43,7 +47,7 @@ public class FacesActivity extends Activity {
 
         //Get package data
         settings = getSharedPreferences("PREF_FILE", 0);
-        String pack = settings.getString("Package", "");
+        final String pack_string = settings.getString("Package", "");
         curr_high_score = settings.getInt("Faces_Score", 0);
         curr_score = 0;
 
@@ -62,11 +66,38 @@ public class FacesActivity extends Activity {
                 final ImageView image = (ImageView) stub.findViewById(R.id.faces_image);
                 final ImageView right = (ImageView) stub.findViewById(R.id.faces_right);
                 final ImageView wrong = (ImageView) stub.findViewById(R.id.faces_wrong);
+
                 Typeface face = Typeface.createFromAsset(getAssets(),"fonts/pocket_monk.otf");
                 hiscore.setTypeface(face);
                 hiscore.setText("HISCORE:" + curr_high_score);
                 score.setTypeface(face);
                 score.setText("SCORE:" + curr_score);
+
+                try {
+                    JSONObject pack = new JSONObject(pack_string);
+                    JSONObject faces_pack = pack.getJSONObject("Faces");
+                    Bitmap home_b = MainActivity.getBitmapFromString(faces_pack.getString("home"));
+                    Bitmap tut_b = MainActivity.getBitmapFromString(faces_pack.getString("tutorial"));
+                    Bitmap back_b = MainActivity.getBitmapFromString(faces_pack.getString("back"));
+                    Bitmap right_b = MainActivity.getBitmapFromString(faces_pack.getString("right"));
+                    Bitmap wrong_b = MainActivity.getBitmapFromString(faces_pack.getString("wrong"));
+                    String font = faces_pack.getString("font");
+                    String font_color = faces_pack.getString("font-color");
+
+                    home_screen.setImageBitmap(home_b);
+                    tut_screen.setImageBitmap(tut_b);
+                    back_screen.setImageBitmap(back_b);
+                    right.setImageBitmap(right_b);
+                    wrong.setImageBitmap(wrong_b);
+                    Typeface face2 = Typeface.createFromAsset(getAssets(),"fonts/" + font);
+                    hiscore.setTypeface(face2);
+                    score.setTypeface(face2);
+                    hiscore.setTextColor(Color.parseColor(font_color));
+                    score.setTextColor(Color.parseColor(font_color));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
 
                 if (picker == 1) {
                     home_screen.setVisibility(View.GONE);
