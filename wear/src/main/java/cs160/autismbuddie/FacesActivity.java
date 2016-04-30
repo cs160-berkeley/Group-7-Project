@@ -137,7 +137,7 @@ public class FacesActivity extends Activity {
                                 final View[] v1 = {image};
                                 final View[] v2 = {right};
                                 crossFade(v1, v2);
-                                new CountDownTimer(3000, 1000) {
+                                new CountDownTimer(2000, 1000) {
                                     @Override
                                     public void onTick(long millisUntilFinished) {
                                     }
@@ -171,7 +171,7 @@ public class FacesActivity extends Activity {
                                 final View[] v1 = {image};
                                 final View[] v2 = {wrong};
                                 crossFade(v1, v2);
-                                new CountDownTimer(3000, 1000) {
+                                new CountDownTimer(2000, 1000) {
                                     @Override
                                     public void onTick(long millisUntilFinished) {
                                     }
@@ -213,7 +213,7 @@ public class FacesActivity extends Activity {
                                 final View[] v1 = {image};
                                 final View[] v2 = {wrong};
                                 crossFade(v1, v2);
-                                new CountDownTimer(3000, 1000) {
+                                new CountDownTimer(2000, 1000) {
                                     @Override
                                     public void onTick(long millisUntilFinished) {
                                     }
@@ -251,7 +251,7 @@ public class FacesActivity extends Activity {
                                 final View[] v1 = {image};
                                 final View[] v2 = {right};
                                 crossFade(v1, v2);
-                                new CountDownTimer(3000, 1000) {
+                                new CountDownTimer(2000, 1000) {
                                     @Override
                                     public void onTick(long millisUntilFinished) {
                                     }

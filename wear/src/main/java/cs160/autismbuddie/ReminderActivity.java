@@ -1,24 +1,42 @@
 package cs160.autismbuddie;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.wearable.view.WatchViewStub;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 public class ReminderActivity extends Activity {
 
     private Context _that = this;
     private int screen;
+    private int mShortAnimationDuration;
+    private SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
+
+        // Retrieve and cache the system's default "short" animation time.
+        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+
+        //Get package data
+        settings = getSharedPreferences("PREF_FILE", 0);
+        final String pack_string = settings.getString("Package", "");
 
         screen = 0;
 
@@ -26,17 +44,47 @@ public class ReminderActivity extends Activity {
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                final ImageView v = (ImageView) stub.findViewById(R.id.reminder_img);
-                v.setOnTouchListener(new OnSwipeTouchListener(_that){
+                final ImageView reminder_back = (ImageView) stub.findViewById(R.id.reminder_back);
+                final TextView reminder_text = (TextView) stub.findViewById(R.id.reminder_text);
+                final ImageView reminder_complete = (ImageView) stub.findViewById(R.id.reminder_complete);
+                final ImageView reminder_incomplete = (ImageView) stub.findViewById(R.id.reminder_incomplete);
+                Typeface face = Typeface.createFromAsset(getAssets(),"fonts/pokemon_gb.ttf");
+                reminder_text.setTypeface(face);
+
+                try {
+                    JSONObject pack = new JSONObject(pack_string);
+                    JSONObject reminder_pack = pack.getJSONObject("Reminder");
+                    Bitmap back_b = MainActivity.getBitmapFromString(reminder_pack.getString("back"));
+                    Bitmap complete_b = MainActivity.getBitmapFromString(reminder_pack.getString("complete"));
+                    Bitmap incomplete_b = MainActivity.getBitmapFromString(reminder_pack.getString("incomplete"));
+                    String font = reminder_pack.getString("font");
+                    String font_color = reminder_pack.getString("font-color");
+
+                    reminder_back.setImageBitmap(back_b);
+                    reminder_incomplete.setImageBitmap(incomplete_b);
+                    reminder_complete.setImageBitmap(complete_b);
+
+                    Typeface face2 = Typeface.createFromAsset(getAssets(), "fonts/" + font);
+                    reminder_text.setTypeface(face2);
+                    reminder_text.setTextColor(Color.parseColor(font_color));
+                } catch (Exception e) {
+
+                }
+
+
+                stub.setOnTouchListener(new OnSwipeTouchListener(_that){
                     @Override
                     public void onTap() {
                         Log.v("TAP", "TAP");
                     }
+
                     public void onSwipeRight() {
                         Log.v("RIGHT", "RIGHT");
                         if (screen == 0) {
                             screen = 1;
-                            v.setImageResource(R.drawable.reminder2);
+                            View[] v1 = {reminder_back, reminder_text};
+                            View[] v2 = {reminder_complete};
+                            crossFade(v1, v2);
                             new CountDownTimer(2000, 1000) {
                                 @Override
                                 public void onTick(long millisUntilFinished) {
@@ -56,7 +104,9 @@ public class ReminderActivity extends Activity {
                         Log.v("LEFT", "LEFT");
                         if (screen == 0) {
                             screen = 1;
-                            v.setImageResource(R.drawable.reminder3);
+                            View[] v1 = {reminder_back, reminder_text};
+                            View[] v2 = {reminder_incomplete};
+                            crossFade(v1, v2);
                             new CountDownTimer(2000, 1000) {
                                 @Override
                                 public void onTick(long millisUntilFinished) {
@@ -82,5 +132,28 @@ public class ReminderActivity extends Activity {
                 });
             }
         });
+    }
+
+    private void crossFade(View[] v1, View[] v2) {
+        for (View v : v2) {
+            v.setAlpha(0f);
+            v.setVisibility(View.VISIBLE);
+            v.animate()
+                    .alpha(1f)
+                    .setDuration(mShortAnimationDuration)
+                    .setListener(null);
+        }
+
+        for (final View v : v1) {
+            v.animate()
+                    .alpha(0f)
+                    .setDuration(mShortAnimationDuration)
+                    .setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            v.setVisibility(View.GONE);
+                        }
+                    });
+        }
     }
 }
