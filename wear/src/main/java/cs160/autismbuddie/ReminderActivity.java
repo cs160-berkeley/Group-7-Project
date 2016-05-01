@@ -25,6 +25,7 @@ public class ReminderActivity extends Activity {
     private int screen;
     private int mShortAnimationDuration;
     private SharedPreferences settings;
+    private String r_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,11 @@ public class ReminderActivity extends Activity {
         settings = getSharedPreferences("PREF_FILE", 0);
         final String pack_string = settings.getString("Package", "");
 
+        //Get Intent Data
+        String pa = getPackageName();
+        Intent intent = getIntent();
+        r_text = intent.getStringExtra(pa + ".reminder");
+
         screen = 0;
 
         final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
@@ -50,6 +56,7 @@ public class ReminderActivity extends Activity {
                 final ImageView reminder_incomplete = (ImageView) stub.findViewById(R.id.reminder_incomplete);
                 Typeface face = Typeface.createFromAsset(getAssets(),"fonts/pokemon_gb.ttf");
                 reminder_text.setTypeface(face);
+                reminder_text.setText(r_text);
 
                 try {
                     JSONObject pack = new JSONObject(pack_string);
@@ -68,7 +75,16 @@ public class ReminderActivity extends Activity {
                     reminder_text.setTypeface(face2);
                     reminder_text.setTextColor(Color.parseColor(font_color));
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
+                if (MainActivity.PACK) {
+                    reminder_back.setImageResource(R.drawable.reminder_back2);
+                    reminder_complete.setImageResource(R.drawable.reminder_complete2);
+                    reminder_incomplete.setImageResource(R.drawable.reminder_incomplete2);
+                    Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/minecraft.ttf");
+                    reminder_text.setTypeface(face3);
+                    reminder_text.setTextColor(Color.parseColor("#c5c5c5"));
                 }
 
 

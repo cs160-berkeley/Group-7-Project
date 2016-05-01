@@ -98,6 +98,19 @@ public class FacesActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                if (MainActivity.PACK) {
+                    home_screen.setImageResource(R.drawable.faces_home2);
+                    tut_screen.setImageResource(R.drawable.faces_tut2);
+                    back_screen.setImageResource(R.drawable.faces_back2);
+                    right.setImageResource(R.drawable.faces_right2);
+                    wrong.setImageResource(R.drawable.faces_wrong2);
+                    Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/minecraft.ttf");
+                    hiscore.setTypeface(face3);
+                    score.setTypeface(face3);
+                    hiscore.setTextColor(Color.parseColor("#c5c5c5"));
+                    score.setTextColor(Color.parseColor("#c5c5c5"));
+                }
+
 
                 if (picker == 1) {
                     home_screen.setVisibility(View.GONE);

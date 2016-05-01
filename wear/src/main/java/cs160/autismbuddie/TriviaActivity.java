@@ -89,6 +89,17 @@ public class TriviaActivity extends Activity {
                     e.printStackTrace();
                 }
 
+                if (MainActivity.PACK) {
+                    home_screen.setImageResource(R.drawable.trivia_home2);
+                    tut_screen.setImageResource(R.drawable.trivia_tut2);
+                    back_screen.setImageResource(R.drawable.trivia_back2);
+                    Typeface face3 = Typeface.createFromAsset(getAssets(),"fonts/minecraft.ttf");
+                    fact1.setTypeface(face3);
+                    fact2.setTypeface(face3);
+                    fact1.setTextColor(Color.parseColor("#c5c5c5"));
+                    fact2.setTextColor(Color.parseColor("#c5c5c5"));
+                }
+
                 if (picker == 1) {
                     home_screen.setVisibility(View.GONE);
                     tut_screen.setVisibility(View.VISIBLE);

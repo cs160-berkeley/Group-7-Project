@@ -29,6 +29,9 @@ public class ActivityFragment extends Fragment{
             act.setImageBitmap(btmp);
         }
         if (b.getInt("activity") == 0) {
+            if (MainActivity.PACK) {
+                act.setImageResource(R.drawable.faces_home2);
+            }
             act.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -38,6 +41,9 @@ public class ActivityFragment extends Fragment{
                 }
             });
         } else if (b.getInt("activity") == 1) {
+            if (MainActivity.PACK) {
+                act.setImageResource(R.drawable.trivia_home2);
+            }
             act.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

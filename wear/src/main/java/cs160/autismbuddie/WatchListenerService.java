@@ -7,6 +7,9 @@ import android.util.Log;
 import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.WearableListenerService;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -39,6 +42,7 @@ public class WatchListenerService extends WearableListenerService {
         } else if (path.equals("/reminder")) {
             Intent intent = new Intent(this, ReminderActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra(getPackageName() + ".reminder", 0);
             startActivity(intent);
         } else if (path.equals("/mode")) {
             boolean freeMode = value.equals("free");
@@ -52,8 +56,15 @@ public class WatchListenerService extends WearableListenerService {
         } else if (path.equals("/package")) {
             SharedPreferences settings = getSharedPreferences("PREF_FILE", 0);
             SharedPreferences.Editor editor = settings.edit();
-            editor.putString("Package", value);
-            editor.commit();
+
+            try {
+                JSONObject p = new JSONObject(value);
+                String pack = p.getString("ID");
+                editor.putString("Package", pack);
+                editor.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

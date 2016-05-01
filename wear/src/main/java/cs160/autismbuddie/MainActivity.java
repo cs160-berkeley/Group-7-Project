@@ -23,6 +23,7 @@ import java.util.Locale;
 
 public class MainActivity extends WearableActivity {
 
+    public static boolean PACK;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class MainActivity extends WearableActivity {
             e.printStackTrace();
         }
 
+        PACK = pack.equals("Minecraft");
         boolean mode = settings.getBoolean("freeMode", false);
         if (mode) {
             String[] home_screen_strings = {"", ""};
