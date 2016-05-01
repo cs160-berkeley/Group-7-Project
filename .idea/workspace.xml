@@ -48,8 +48,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c68210a-2a63-4adc-a61f-be97e3ddf080" name="Default" comment="Pull faces and trivia from parse">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java" afterPath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/WatchListenerService.java" afterPath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/WatchListenerService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java" afterPath="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java" />
     </list>
     <ignored path="ABuddie.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -77,31 +76,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.56110156">
+              <caret line="65" column="73" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActivityFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityGridPageAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ActivityGridPageAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityGridPageAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5094664">
-              <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -2876,12 +2865,12 @@
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/activity_main_restricted.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/round_activity_trivia.xml" />
         <option value="$PROJECT_DIR$/wear/src/main/res/layout/round_activity_faces.xml" />
-        <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/FacesActivity.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/TriviaActivity.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ReminderActivity.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/WatchListenerService.java" />
         <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java" />
+        <option value="$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -3832,14 +3821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ReminderActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -3864,18 +3845,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityGridPageAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="18" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30636832">
           <caret line="25" column="54" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/ActivityGridPageAdapter.java">
+    <entry file="file://$PROJECT_DIR$/wear/src/main/java/cs160/autismbuddie/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5094664">
-          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.56110156">
+          <caret line="65" column="73" selection-start-line="65" selection-start-column="73" selection-end-line="65" selection-end-column="73" />
           <folding />
         </state>
       </provider>

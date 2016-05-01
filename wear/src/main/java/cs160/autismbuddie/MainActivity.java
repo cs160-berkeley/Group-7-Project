@@ -63,13 +63,17 @@ public class MainActivity extends WearableActivity {
             setContentView(R.layout.activity_main_restricted);
             if (pack != null) {
                 try {
-                    String watch_face_string = pack.getString("WatchFace");
+                    String watch_face_string = pack.getString("WatchFace1");
                     Bitmap watch_face_bitmap = MainActivity.getBitmapFromString(watch_face_string);
                     ImageView watch_face_view = (ImageView) findViewById(R.id.watch_face);
                     watch_face_view.setImageBitmap(watch_face_bitmap);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+            }
+            if (PACK) {
+                ImageView watch_face_view = (ImageView) findViewById(R.id.watch_face);
+                watch_face_view.setImageResource(R.drawable.watch_back2);
             }
         }
     }
