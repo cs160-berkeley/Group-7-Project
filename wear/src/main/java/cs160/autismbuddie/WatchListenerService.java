@@ -42,7 +42,7 @@ public class WatchListenerService extends WearableListenerService {
         } else if (path.equals("/reminder")) {
             Intent intent = new Intent(this, ReminderActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra(getPackageName() + ".reminder", 0);
+            intent.putExtra(getPackageName() + ".reminder", value);
             startActivity(intent);
         } else if (path.equals("/mode")) {
             boolean freeMode = value.equals("free");

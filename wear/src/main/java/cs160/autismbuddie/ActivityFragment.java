@@ -23,7 +23,7 @@ public class ActivityFragment extends Fragment{
         Bundle b = getArguments();
 
         ImageView act = (ImageView) v.findViewById(R.id.img);
-        String home_screen = b.getString("home_screen", "");
+        String home_screen = b.getString("home_screen1", "");
         if (home_screen.length() > 0) {
             Bitmap btmp = MainActivity.getBitmapFromString(home_screen);
             act.setImageBitmap(btmp);
